@@ -19,17 +19,13 @@ def index(request):
     e = 0
 
     for i in list_items:
+        total += i.amount
         if i.product.type == 'Book':
-            total += i.amount
             b += i.amount
-            
-            
         elif i.product.type == 'Clothes':
             c += i.amount
-            total += c
         else:
             e += i.amount
-
 
     if total == 0:
         pb = 0
@@ -41,10 +37,6 @@ def index(request):
         pe = e/total*100
 
     print(total)
-
-
-
-    
     return render(request,'sale/table.html',{'orders':orders,'orders1':orders1,'b':b,'c':c,'e':e,'pb':pb,'pc':pc,'pe':pe})
 
 def confirm(request,order_id):
