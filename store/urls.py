@@ -5,4 +5,5 @@ urlpatterns = [
     path('add/book',views.addbook,name="addbook"),
     path('add/clothes',views.addclothes,name="addclothes"),
     path('add/electronic',views.electronic,name="addelectronic"),
+    path('confirm/<int:order_id>',views.confirm,name="orderconfirm"),
 ]

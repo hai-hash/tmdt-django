@@ -169,12 +169,13 @@
                       <th>Ngày đặt hàng</th>
                       <th>Giá</th>
                       <th>Sản phẩm</th>
+                      <th>Tiến độ</th>
                       <th>Số lương</th>
                       <th>hình thức giao hàng</th>
                       <th>Hình thức thanh toán</th>
                       
             
-                      <th>Tiến độ</th>
+                      
                       <th>Trạng thái đơn hàng</th>
                       
                     </tr>
@@ -187,15 +188,16 @@
                       <td>{{order.itemInCart.createDate}}</td>
                       <td>{{order.total}}</td>
                       <td>{{order.itemInCart.product.name}}</td>
-                      <td>{{order.itemInCart.amount}}</td>
-                      <td>{{order.shipment.type}}</td>
-                      <td>{{order.payment.type}}</td>
-                      
                       <td>
                       <div class="progress progress-xs">
                           <div class="progress-bar bg-success" style="width: {{order.process}}%"></div>
                         </div>
                       </td>
+                      <td>{{order.itemInCart.amount}}</td>
+                      <td>{{order.shipment.type}}</td>
+                      <td>{{order.payment.type}}</td>
+                      
+                      
                       <td>{{order.statusstr}}</td>
                       
                       
