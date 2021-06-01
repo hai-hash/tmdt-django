@@ -1,0 +1,55 @@
+{% extends 'shop/base.html' %}
+        <!-- Header-->
+{% block content %}
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Shop in style</h1>
+
+                </div>
+                <form action="/search" method="GET">
+                  <div class="input-group">
+
+					  <input type="text" class="form-control rounded" placeholder="Search" aria-label="Search"
+					    aria-describedby="search-addon" name="name" />
+					  <button type="submit" class="btn btn-outline-primary">Tìm kiếm</button>
+
+					</div>
+                 </form>
+            </div>
+        </header>
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    {% for product in list %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            {% if product.saleOff != 0.0 %}
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                            {% endif %}
+                            <!-- Product image-->
+                            <img class="card-img-top" src={{ product.image }} style="height:60%;width:100%" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{ product.name }}</h5>
+                                    <!-- Product price-->
+                                    {% load humanize %}
+                                         <span>{{product.salePrice|floatformat:0|intcomma }}</span>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/detail/{{product.id}}">Xem chi tiết</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+{% endblock %}

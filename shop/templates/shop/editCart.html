@@ -1,0 +1,53 @@
+
+        {% extends 'shop/base.html' %}
+        <!-- Header-->
+{% block content %}
+        <section class="jumbotron text-center">
+		    <div class="container">
+		        <h1 class="jumbotron-heading">E-COMMERCE CART</h1>
+		     </div>
+		</section>
+        <!-- Section-->
+        <div class="container mb-4">
+		    <div class="row">
+		        <div class="col-12">
+		            <div class="table-responsive">
+		                <table class="table table-striped">
+		                    <thead>
+		                        <tr>
+		                            <th scope="col"> </th>
+		                            <th scope="col">Tên</th>
+		                            <th scope="col" class="text-center">Số lượng</th>
+		                            <th scope="col" class="text-right">Giá</th>
+		                            <th> </th>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+		                        <tr>
+		                            <form action="/cart/edit" method="POST">
+                                        {% csrf_token %}
+			                        	<input type="hidden" id="id" name="id" value="{{item.id}}"/>
+			                            <td><img src={{ item.product.image }} style=" height:80px; width:80px"/> </td>
+			                            <td > {{ item.product.name }}</td>
+
+			                            <td><input class="form-control" type="text" name="amount" id="amount" value={{item.amount}} /></td>
+                                        {% load humanize %}
+			                            <td class="text-right">{{item.product.salePrice|floatformat:0|intcomma }}</td>
+			                            <td class="text-right">
+
+			                            	<button class="btn btn-sm btn-success" type="submit">
+			                            	<i class="fa fa-trash"></i> Lưu </button>
+			                            	</a>
+			                            </td>
+		                            </form>
+		                        </tr>
+
+		                    </tbody>
+		                </table>
+		            </div>
+		        </div>
+
+		        </div>
+		    </div>
+
+{% endblock %}
