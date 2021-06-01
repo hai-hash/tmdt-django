@@ -25,8 +25,10 @@
                     {% for product in list %}
                     <div class="col mb-5">
                         <div class="card h-100">
+                        {% load humanize %}
+                            {% load mathfilters %}
                             {% if product.saleOff != 0.0 %}
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot {{ product.saleOff|mul:-100|floatformat:0|intcomma }} %</div>
                             {% endif %}
                             <!-- Product image-->
                             <img class="card-img-top" src={{ product.image }} style="height:60%;width:100%" alt="..." />
@@ -36,8 +38,14 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{ product.name }}</h5>
                                     <!-- Product price-->
-                                    {% load humanize %}
-                                         <span>{{product.salePrice|floatformat:0|intcomma }}</span>
+                                    {% if product.saleOff == 0.0 %}
+
+                                        <span>{{product.salePrice|floatformat:0|intcomma }}</span>
+                                        {% else %}
+                                            <span class="text-muted text-decoration-line-through">{{product.salePrice|floatformat:0|intcomma }}</span>
+                                            <br/>
+                                            <span style="color: red">{{ product.salePrice|mul:product.saleOff|sub:product.salePrice|mul:-1 |floatformat:0|intcomma }}</span>
+                                    {% endif %}
                                 </div>
                             </div>
                             <!-- Product actions-->

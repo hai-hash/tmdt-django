@@ -19,17 +19,18 @@ def detail(request,pro_id):
     product=Product.objects.get(pk=pro_id)
     list_comment=[]
     list_comment=Comment.objects.filter(product=product)
+
     user = request.user
-    customer = Customer.objects.get(account=user)
-    love = Loves.objects.filter(customer=customer, product=product)
-
-    totalLike=len(Loves.objects.filter(product=product))
-
+    totalLike = len(Loves.objects.filter(product=product))
     liked = 0
-    if len(love) == 0:
-        liked=0
-    else:
-        liked=1
+    if user.is_authenticated:
+        customer = Customer.objects.get(account=user)
+        love = Loves.objects.filter(customer=customer, product=product)
+
+        if len(love) == 0:
+            liked=0
+        else:
+            liked=1
 
     return render(request,"shop/detail.html",{"product":product,"list_comment":list_comment,"liked":liked, "totalLike":totalLike})
 

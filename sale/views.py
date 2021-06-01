@@ -20,15 +20,16 @@ def index(request):
 
     for i in list_items:
         if i.product.type == 'Book':
+            total += i.amount
             b += i.amount
-            print(b)
-            total += b
+            
+            
         elif i.product.type == 'Clothes':
             c += i.amount
             total += c
         else:
             e += i.amount
-            total += e
+
 
     if total == 0:
         pb = 0
@@ -39,7 +40,7 @@ def index(request):
         pc = c/total*100
         pe = e/total*100
 
-    print(b)
+    print(total)
 
 
 

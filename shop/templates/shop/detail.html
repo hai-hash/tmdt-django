@@ -32,7 +32,7 @@
                              <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"  style="font-weight: bold; color: green">{{ user.username }}</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/changepass" >Đổi mật khẩu</a></li>
+
                                 <li><a class="dropdown-item" href="/order">Lịch sử đặt hàng</a></li>
                                 <li><hr class="dropdown-divider" /></li>
 
@@ -63,7 +63,7 @@
 					<div class="preview col-md-6">
 						
 						<div class="preview-pic tab-content">
-						  <div class="tab-pane active" id="pic-1"><img src="{{product.image}}" /></div>
+						  <div class="tab-pane active" id="pic-1"><img src="{{product.image}}" style=" height:400px; width: 100% "/></div>
 						  
 						</div>
 						<ul class="preview-thumbnail nav nav-tabs">
@@ -85,7 +85,8 @@
 						<h4 class="price">Giá:
                             <span>
                                 {% load humanize %}
-                                <span>{{product.salePrice|floatformat:0|intcomma }}</span>
+                                {% load mathfilters %}
+                                <span>{{ product.salePrice|mul:product.saleOff|sub:product.salePrice|mul:-1|floatformat:0|intcomma }}</span>
                             </span>
                         </h4>
 						
