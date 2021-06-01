@@ -109,5 +109,7 @@ class Orders(models.Model):
     total = models.FloatField(default=0)
     address = models.CharField(max_length=100,default='')
     phone = models.CharField(max_length=100,default='')
+    statusstr = models.CharField(max_length=100,default='Chờ xác nhận')
+    process = models.IntegerField(default=20)
 
 
