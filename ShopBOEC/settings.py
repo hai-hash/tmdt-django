@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'mathfilters',
     'shop',
     'sale',
+    'ship',
+    'store',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +131,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
+
+APPEND_SLASH=False
