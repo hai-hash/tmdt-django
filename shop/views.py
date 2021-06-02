@@ -9,6 +9,18 @@ import datetime
 from .models import Product
 # Create your views here.
 
+def default(request):
+    user = request.user
+    print(user.username)
+    print("ten:"+str(user.groups.name))
+    if user.groups.filter(name="user").exists():
+        return redirect("/")
+    elif user.groups.filter(name="store").exists():
+        return redirect("/store/")
+    elif user.groups.filter(name="busi").exists():
+        return redirect("/busi/")
+    else:
+        return redirect("/sale/")
 
 def index(request):
     list = Product.objects.all()
@@ -48,9 +60,13 @@ def cart(request):
 
         list_item=[]
         list_item = ItemInCart.objects.filter(cart=cart,status=1)
+        total=0.0
+        for item in list_item:
+            total+=((item.product.salePrice*(1-item.product.saleOff))*item.amount)
+
         list_ship=Shipment.objects.all()
         list_pay=Payment.objects.all()
-        return render(request, "shop/cart.html", {"list_item": list_item,"list_ship":list_ship,"list_pay":list_pay})
+        return render(request, "shop/cart.html", {"list_item": list_item,"list_ship":list_ship,"list_pay":list_pay,"total":total})
     else:
         redirect(request,"/login")
 
@@ -135,7 +151,7 @@ class Login(View):
         password=request.POST['password']
         user=authenticate(username=username,password=password)
         if user is None:
-            return render(request, "shop/login.html",{"message":"Tài khoản hoặc mật khẩu không chính xác"})
+            return redirect("/login",context={"message":"Tài khoản hoặc mật khẩu không chính xác"})
         return redirect("/")
 
 

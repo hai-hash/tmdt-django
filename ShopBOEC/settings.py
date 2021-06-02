@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'shop',
     'sale',
+    'ship',
     'store',
 ]
 
@@ -129,6 +130,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/default'
 
 APPEND_SLASH=False

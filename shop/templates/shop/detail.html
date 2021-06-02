@@ -87,6 +87,9 @@
                                 {% load humanize %}
                                 {% load mathfilters %}
                                 <span>{{ product.salePrice|mul:product.saleOff|sub:product.salePrice|mul:-1|floatformat:0|intcomma }}</span>
+                                {% if product.saleOff != 0 %}
+                                    <span class="text-muted text-decoration-line-through">{{product.salePrice|floatformat:0|intcomma }}</span>
+                                {% endif %}
                             </span>
                         </h4>
 						
