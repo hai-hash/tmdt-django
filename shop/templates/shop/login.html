@@ -39,7 +39,10 @@
 					<span class="login100-form-title">
 						Member Login
 					</span>
-                    <i style="color:red;">{{message}}</i>
+                    {% if message %}
+
+                     <i style="color:red;">{{message}}</i>
+                    {% endif %}
 					<div class="wrap-input100 validate-input" >
 						<input class="input100" type="text" name="username" placeholder="username">
 						<span class="focus-input100"></span>

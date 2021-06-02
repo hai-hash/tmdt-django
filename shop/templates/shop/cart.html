@@ -84,11 +84,14 @@
 		             
 		                            <td >{{ item.amount }}</td>
                                     {% load humanize %}
-		                            <td class="text-right" >{{ item.product.salePrice|floatformat:0|intcomma }}</td>
+		                            <td class="text-right" >
+                                        {% load mathfilters %}
+                                        {{ item.product.salePrice|mul:item.product.saleOff|sub:item.product.salePrice|mul:-1|floatformat:0|intcomma }}
+                                    </td>
 		                            <td class="text-right">
 		                            	<a href="/cart/edit/{{item.id }}">
 		                            	<button class="btn btn-sm btn-warning">
-		                            	<i class="fa fa-trash"></i> Sửa </button> 
+		                            	<i class="fa fa-pencil-square-o"></i> Sửa </button>
 		                            	</a>
 		                            	<a href="/cart/delete/{{item.id }}">
 		                            	<button class="btn btn-sm btn-danger">
@@ -98,6 +101,10 @@
 		                        </tr>
 
 		                        {% endfor %}
+                                 <tr>
+                                    <td><b>Tổng tiền</b></td>
+                                     <td>{{total|floatformat:0|intcomma }}</td>
+                                </tr>
 		                    </tbody>
 		                </table>
 		            </div>

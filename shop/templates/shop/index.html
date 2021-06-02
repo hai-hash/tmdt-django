@@ -28,7 +28,7 @@
                         {% load humanize %}
                             {% load mathfilters %}
                             {% if product.saleOff != 0.0 %}
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Hot {{ product.saleOff|mul:-100|floatformat:0|intcomma }} %</div>
+                            <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{{ product.saleOff|mul:-100|floatformat:0|intcomma }} %</div>
                             {% endif %}
                             <!-- Product image-->
                             <img class="card-img-top" src={{ product.image }} style="height:60%;width:100%" alt="..." />

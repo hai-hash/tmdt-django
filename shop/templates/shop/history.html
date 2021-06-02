@@ -80,7 +80,7 @@
 		                        {% for orders in list_order %}
 		                        <tr>
 		                            <td><img src="{{orders.itemInCart.product.image}}" style="height:80px; width:80px"/> </td>
-
+                                    <td>{{ orders.itemInCart.product.name }}
 
 		                            <td>{{orders.itemInCart.amount}}</td>
                                     {% load humanize %}
