@@ -1,5 +1,6 @@
 from shop.models import ItemInCart, Orders
 from django.shortcuts import render,redirect
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -40,6 +41,7 @@ def index(request):
     return render(request,'sale/table.html',{'orders':orders,'orders1':orders1,'b':b,'c':c,'e':e,'pb':pb,'pc':pc,'pe':pe})
 
 def confirm(request,order_id):
+    send_mail('Thông Báo đặt hàng thành công','xin chào , đơn hàng của bạn đã được chấp nhận, bạn hay thường xuyên theo dõi đơn hàng của mình nhé , Hoàng lol','whynotme1131999@gmail.com',['hoanga4bg@gmail.com'],fail_silently=False)
     order = Orders.objects.get(id=order_id)
     order.status = 1
     order.statusstr = 'đã xác nhận, chờ lấy hàng'
