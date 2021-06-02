@@ -6,4 +6,5 @@ urlpatterns = [
     path('add/clothes',views.addclothes,name="addclothes"),
     path('add/electronic',views.electronic,name="addelectronic"),
     path('confirm/<int:order_id>',views.confirm,name="orderconfirm"),
+    path('edit/<int:product_id>',views.edit,name="editproduct"),
 ]

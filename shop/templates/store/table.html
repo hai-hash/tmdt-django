@@ -48,7 +48,7 @@
                       <td>{{b}}</td>
                       <td>
                         <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: {{pb}}%"></div>
+                          <div class="progress-bar progress-bar-danger bg-danger" style="width: {{pb}}%"></div>
                         </div>
                       </td>
                       <td><span class="badge bg-danger">{{pb}}%</span></td>
@@ -82,7 +82,68 @@
           </div>
           <!-- /.col -->
         </div>
+         <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Mặt hàng còn lại trong kho</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Sản phẩm</th>
+                      <th>Số lượng</th>
+                      <th>biểu đồ</th>
+                      <th style="width: 40px">Tỷ lệ/Tổng</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1.</td>
+                      <td>Sách</td>
+                      <td>{{b_store}}</td>
+                      <td>
+                        <div class="progress progress-xs">
+                          <div class="progress-bar progress-bar-danger bg-danger" style="width: {{pb_store}}%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-danger">{{pb_store}}%</span></td>
+                    </tr>
+                    <tr>
+                      <td>2.</td>
+                      <td>Quần áo</td>
+                      <td>{{c_store}}</td>
+                      <td>
+                        <div class="progress progress-xs">
+                          <div class="progress-bar bg-warning" style="width: {{pc_store}}%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-warning">{{pc_store}}%</span></td>
+                    </tr>
+                    <tr>
+                      <td>3.</td>
+                      <td>Đồng điện tử</td>
+                      <td>{{e_store}}</td>
+                      <td>
+                        <div class="progress progress-xs progress-striped active">
+                          <div class="progress-bar bg-primary" style="width: {{pe_store}}%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-primary">{{pe_store}}%</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- /.col -->
+        </div>
         
+
+
         <!-- /.row -->
         <div class="row">
           <div class="col-12">
@@ -191,7 +252,7 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                          <li><a href="/store/add">Thêm</a></li>
+                          <li><a href="/store/add/book">Thêm</a></li>
                           <li><a href="/store/edit/{{product.id}}">Sửa</a></li>
                           <li><a href="/store/delete/{{product.id}}">Xóa</a></li>
                         </ul>
@@ -270,7 +331,7 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                          <li><a href="/store/add">Thêm</a></li>
+                          <li><a href="/store/add/clothes">Thêm</a></li>
                           <li><a href="/store/edit/{{product.id}}">Sửa</a></li>
                           <li><a href="/store/delete/{{product.id}}">Xóa</a></li>
                         </ul>
@@ -346,7 +407,7 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                          <li><a href="/store/add">Thêm</a></li>
+                          <li><a href="/store/add/electronic">Thêm</a></li>
                           <li><a href="/store/edit/{{product.id}}">Sửa</a></li>
                           <li><a href="/store/delete/{{product.id}}">Xóa</a></li>
                         </ul>

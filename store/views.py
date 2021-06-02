@@ -6,6 +6,29 @@ def index(request):
     orders1 = Orders.objects.all()
     orders = Orders.objects.filter(status=1)
     items = ItemInCart.objects.filter(status=0)
+    products = Product.objects.all()
+    total_store = 0
+    c_store = 0
+    b_store = 0
+    e_store = 0
+    for product in products:
+        total_store += product.amount
+        if product.type == 'Book':
+            b_store += product.amount
+        elif product.type == 'Clothes':
+            c_store += product.amount
+        else:
+            e_store += product.amount
+    
+    if total_store == 0:
+        pc_store = 0
+        pb_store = 0
+        pe_store = 0
+    else:
+        pc_store = c_store/total_store*100
+        pb_store = b_store/total_store*100
+        pe_store = e_store/total_store*100
+
     list_items = []
     for item in items:
         orders2 = Orders.objects.filter(itemInCart=item,status=4)
@@ -40,7 +63,7 @@ def index(request):
     elecs = Electronic.objects.all()
 
     print(total)
-    return render(request,'store/table.html',{'orders':orders,'orders1':orders1,'b':b,'c':c,'e':e,'pb':pb,'pc':pc,'pe':pe,'books':books,'clothes':clothes,'elecs':elecs})
+    return render(request,'store/table.html',{'orders':orders,'orders1':orders1,'b':b,'c':c,'e':e,'pb':pb,'pc':pc,'pe':pe,'books':books,'clothes':clothes,'elecs':elecs,'b_store':b_store,'c_store':c_store,'e_store':e_store,'pb_store':pb_store,'pc_store':pc_store,'pe_store':pe_store})
 
 
 def confirm(request,order_id):
@@ -52,6 +75,27 @@ def confirm(request,order_id):
     return redirect('store')
 
 def edit(request,product_id):
+    if request.method == 'POST':
+        id = request.POST['id']
+        product = Product.objects.get(id=id)
+        name = request.POST['name']
+        importprice = request.POST['importprice']
+        sale = request.POST['sale']
+        amount = request.POST['amount']
+        saleoff = request.POST['saleoff']
+        image = request.POST['image']
+        mota = request.POST['mota']
+        product.name = name
+        product.salePrice=sale
+        product.importPrice=importprice
+        product.amount=amount
+        product.saleOff=saleoff
+        product.image=image
+        product.discriminator=mota
+        product.save()
+        return redirect('store')
+
+
     product = Product.objects.get(id=product_id)
     return render(request,"store/edit.html",{'product':product})
 def addbook(request):
