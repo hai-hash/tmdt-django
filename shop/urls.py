@@ -23,5 +23,7 @@ urlpatterns = [
     path('cart/edit',views.editCart),
     path('comment',views.addComment),
     path('like/<int:pro_id>',views.like),
-    path('dislike/<int:pro_id>',views.dislike)
+    path('dislike/<int:pro_id>',views.dislike),
+
+    path('default',views.default)
 ]

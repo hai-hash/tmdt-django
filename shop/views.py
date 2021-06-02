@@ -9,6 +9,18 @@ import datetime
 from .models import Product
 # Create your views here.
 
+def default(request):
+    user = request.user
+    print(user.username)
+    print("ten:"+str(user.groups.name))
+    if user.groups.filter(name="user").exists():
+        return redirect("/")
+    elif user.groups.filter(name="store").exists():
+        return redirect("/store/")
+    elif user.groups.filter(name="busi").exists():
+        return redirect("/busi/")
+    else:
+        return redirect("/sale/")
 
 def index(request):
     list = Product.objects.all()
