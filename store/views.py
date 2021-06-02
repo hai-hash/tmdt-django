@@ -68,6 +68,10 @@ def index(request):
 
 def confirm(request,order_id):
     order = Orders.objects.get(id=order_id)
+    id_product = order.itemInCart.product.id
+    product = Product.objects.get(id=id_product)
+    product.amount = product.amount - order.itemInCart.amount
+    product.save()
     order.status = 2
     order.statusstr = 'đã lấy hàng, chờ ship hàng'
     order.process = 60
