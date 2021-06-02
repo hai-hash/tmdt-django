@@ -5,7 +5,8 @@ from django.shortcuts import render,redirect
 
 def index(request):
     orders1 = Orders.objects.all()
-    orders = Orders.objects.filter(status=0)
+    orders = Orders.objects.filter(status=2)
+    orders3 = Orders.objects.filter(status=3)
     items = ItemInCart.objects.filter(status=0)
     list_items = []
     for item in items:
@@ -37,15 +38,24 @@ def index(request):
         pe = e/total*100
 
     print(total)
-    return render(request,'sale/table.html',{'orders':orders,'orders1':orders1,'b':b,'c':c,'e':e,'pb':pb,'pc':pc,'pe':pe})
+    return render(request,'ship/table.html',{'orders':orders,'orders1':orders1,'b':b,'c':c,'e':e,'pb':pb,'pc':pc,'pe':pe,'orders3':orders3})
 
 def confirm(request,order_id):
     order = Orders.objects.get(id=order_id)
-    order.status = 1
-    order.statusstr = 'đã xác nhận, chờ lấy hàng'
-    order.process = 40
+    order.status = 3
+    order.statusstr = 'đang giao hàng'
+    order.process = 80
     order.save()
-    return redirect('sale')
+    return redirect('ship')
+
+def confirm1(request,order_id):
+    order = Orders.objects.get(id=order_id)
+    order.status = 4
+    order.statusstr = 'giao hàng thành công'
+    order.process = 100
+    order.save()
+    return redirect('ship')
 
     
+
 

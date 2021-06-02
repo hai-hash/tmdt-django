@@ -31,7 +31,7 @@ def index(request):
 
     list_items = []
     for item in items:
-        orders2 = Orders.objects.filter(itemInCart=item,status=2)
+        orders2 = Orders.objects.filter(itemInCart=item,status=4)
         if len(orders2) > 0 :
             list_items.append(item)
     
@@ -73,8 +73,8 @@ def confirm(request,order_id):
     product.amount = product.amount - order.itemInCart.amount
     product.save()
     order.status = 2
-    order.statusstr = 'đang giao hàng'
-    order.process = 100
+    order.statusstr = 'đã lấy hàng, chờ ship hàng'
+    order.process = 60
     order.save()
     return redirect('store')
 
