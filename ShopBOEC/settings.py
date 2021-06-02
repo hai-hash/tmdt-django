@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'mathfilters',
     'shop',
     'sale',
-    'ship',
     'store',
 ]
 
