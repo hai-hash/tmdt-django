@@ -1,4 +1,4 @@
-{% extends 'sale/index.html' %}
+{% extends 'ship/index.html' %}
 {% load static %}
 {% block content %}
 <!-- Content Wrapper. Contains page content -->
@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Sale</h1>
+            <h1>Shipment</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Sale</li>
+              <li class="breadcrumb-item active">Ship</li>
             </ol>
           </div>
         </div>
@@ -88,7 +88,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Xác nhận đơn hàng</h3>
+                <h3 class="card-title">Nhận ship đơn hàng</h3>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -129,7 +129,64 @@
                       <td>{{order.shipment.type}}</td>
                       <td>{{order.payment.type}}</td>
                       <td>{{order.statusstr}}</td>
-                      <td><a href="/sale/confirm/{{order.id}}"><button class="btn btn-primary">xác nhận</button></a></td>
+                      <td><a href="/ship/confirm/{{order.id}}"><button class="btn btn-primary">nhận đơn hàng</button></a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Xác nhận giao hàng thành công</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Đơn Hàng số</th>
+                      <th>Ngày đặt hàng</th>
+                      <th>Giá</th>
+                      <th>Sản phẩm</th>
+                      <th>Số lương</th>
+                      <th>hình thức giao hàng</th>
+                      <th>Hình thức thanh toán</th>
+                      <th>Trạng thái</th>
+                      <th>Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for order in orders3 %}
+                    <tr>
+                      <td>#{{order.id}}</td>
+                      <td>{{order.itemInCart.createDate}}</td>
+                      <td>{{order.total}}</td>
+                      <td>{{order.itemInCart.product.name}}</td>
+                      <td>{{order.itemInCart.amount}}</td>
+                      <td>{{order.shipment.type}}</td>
+                      <td>{{order.payment.type}}</td>
+                      <td>{{order.statusstr}}</td>
+                      <td><a href="/ship/confirm1/{{order.id}}"><button class="btn btn-primary">xác nhận</button></a></td>
                     </tr>
                     {% endfor %}
                   </tbody>
