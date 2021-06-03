@@ -1,7 +1,10 @@
 from shop.models import Author, Book, Brand, Category, Clothes, Electronic, ItemInCart, Material, Orders, Product, Supplier, Types
 from django.shortcuts import render,redirect
-
+from django.contrib.auth.decorators import login_required
+from shop.decorators import allowed_user
 # Create your views here.
+@login_required(login_url="/login")
+@allowed_user(allowed_role=["store"])
 def index(request):
     if request.method == 'POST':
         bookname = request.POST['book']

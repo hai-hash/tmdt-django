@@ -3,9 +3,12 @@ from django.shortcuts import render,redirect
 from django.core.mail import send_mail
 from shop.models import *
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from shop.decorators import allowed_user
 
 # Create your views here.
-
+@login_required(login_url="/login")
+@allowed_user(allowed_role=["sale"])
 def index(request):
     if request.method == 'POST':
         name = request.POST['search1']
