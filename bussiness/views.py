@@ -1,6 +1,10 @@
 from django.shortcuts import render,redirect
 from shop.models import *
+from django.contrib.auth.decorators import login_required
+from shop.decorators import allowed_user
 
+@login_required(login_url="/login")
+@allowed_user(allowed_role=["busi"])
 def index(request):
     products = Product.objects.all()
     return render(request,"busi/busi.html",{'products':products})

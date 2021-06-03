@@ -7,7 +7,10 @@ from django.views import View
 from .models import *
 import datetime
 from .models import Product
+from django.contrib.auth.decorators import login_required
+from .decorators import allowed_user
 # Create your views here.
+
 
 def default(request):
     user = request.user
@@ -52,6 +55,8 @@ def search(request):
     list=Product.objects.filter(name=name)
     return render(request,"shop/index.html",{"list":list})
 
+@login_required(login_url="/login")
+@allowed_user(allowed_role=["user"])
 def cart(request):
     if request.user.is_authenticated:
         user=request.user
@@ -89,6 +94,7 @@ def cancelOrder(request,order_id):
     item.delete()
     return  redirect("/order")
 
+
 def addToCart(request,pro_id):
     user = request.user
     customer = Customer.objects.get(account=user)
@@ -98,6 +104,7 @@ def addToCart(request,pro_id):
     item=ItemInCart(cart=cart,createDate=datetime.datetime.now(),status=1,amount=1,product=product)
     item.save()
     return redirect("/cart")
+
 
 def deleteInCart(request,item_id):
     item = ItemInCart.objects.get(id=item_id)
@@ -116,6 +123,7 @@ def editCart(request):
     item.save()
     return redirect("/cart")
 
+
 def addComment(request):
     user = request.user
     customer = Customer.objects.get(account=user)
@@ -126,6 +134,7 @@ def addComment(request):
     comment=Comment(customer=customer,content=comment,product=product)
     comment.save()
     return redirect("/detail/"+id)
+
 
 def like(request,pro_id):
     user = request.user
@@ -142,6 +151,7 @@ def dislike(request,pro_id):
     love=Loves.objects.get(customer=customer,product=product)
     love.delete()
     return redirect("/detail/" + str(pro_id))
+
 
 class Login(View):
     def get(self,request):
@@ -180,7 +190,9 @@ class Register(View):
 
         return redirect("/")
 
+
 class Order(View):
+
     def get(self,request):
         list_order=[]
         user = request.user
@@ -198,6 +210,7 @@ class Order(View):
 
 
         return render(request,"shop/history.html",{"list_order":list_order})
+
 
     def post(self,request):
         user = request.user
