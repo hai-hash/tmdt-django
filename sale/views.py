@@ -1,11 +1,29 @@
 from shop.models import ItemInCart, Orders
 from django.shortcuts import render,redirect
 from django.core.mail import send_mail
+from shop.models import *
+from django.contrib.auth.models import User
 
 # Create your views here.
 
 def index(request):
-    orders1 = Orders.objects.all()
+    if request.method == 'POST':
+        name = request.POST['search1']
+        if name == "":
+            orders1 = Orders.objects.all()
+        else:
+            account = User.objects.get(username=name)
+            customer = Customer.objects.get(account=account)
+            cart = Cart.objects.get(customer=customer)
+            items= ItemInCart.objects.filter(cart=cart)
+            orders1 = []
+            for item in items:
+                order7 = Orders.objects.filter(itemInCart=item)
+                if len(order7) > 0:
+                    orders1.append(order7[0])
+            
+    else:
+        orders1 = Orders.objects.all()
     orders = Orders.objects.filter(status=0)
     items = ItemInCart.objects.filter(status=0)
     list_items = []

@@ -3,6 +3,32 @@ from django.shortcuts import render,redirect
 
 # Create your views here.
 def index(request):
+    if request.method == 'POST':
+        bookname = request.POST['book']
+        cloname = request.POST['clo']
+        elecname = request.POST['elec']
+        if bookname == "":
+            books = Book.objects.all()
+        else:
+            books = Book.objects.filter(name = bookname)
+
+        if cloname == "":
+            clothes = Clothes.objects.all()
+        else:
+            clothes = Clothes.objects.filter(name = cloname)
+        
+        if elecname == "":
+            elecs = Electronic.objects.all()
+        else:
+            elecs = Electronic.objects.filter(name = elecname)
+    else:
+        books = Book.objects.all()
+        clothes = Clothes.objects.all()
+        elecs = Electronic.objects.all()
+
+
+
+
     orders1 = Orders.objects.all()
     orders = Orders.objects.filter(status=1)
     items = ItemInCart.objects.filter(status=0)
@@ -57,11 +83,6 @@ def index(request):
         pb = b/total*100
         pc = c/total*100
         pe = e/total*100
-    
-    books = Book.objects.all()
-    clothes = Clothes.objects.all()
-    elecs = Electronic.objects.all()
-
     print(total)
     return render(request,'store/table.html',{'orders':orders,'orders1':orders1,'b':b,'c':c,'e':e,'pb':pb,'pc':pc,'pe':pe,'books':books,'clothes':clothes,'elecs':elecs,'b_store':b_store,'c_store':c_store,'e_store':e_store,'pb_store':pb_store,'pc_store':pc_store,'pe_store':pe_store})
 
