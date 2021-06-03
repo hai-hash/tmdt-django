@@ -10,17 +10,17 @@ def index(request):
         if bookname == "":
             books = Book.objects.all()
         else:
-            books = Book.objects.filter(name = bookname)
+            books = Book.objects.filter(name__icontains = bookname)
 
         if cloname == "":
             clothes = Clothes.objects.all()
         else:
-            clothes = Clothes.objects.filter(name = cloname)
+            clothes = Clothes.objects.filter(name__icontains = cloname)
         
         if elecname == "":
             elecs = Electronic.objects.all()
         else:
-            elecs = Electronic.objects.filter(name = elecname)
+            elecs = Electronic.objects.filter(name_icontains = elecname)
     else:
         books = Book.objects.all()
         clothes = Clothes.objects.all()
