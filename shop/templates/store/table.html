@@ -167,10 +167,11 @@
                       <th>Ngày đặt hàng</th>
                       <th>Giá</th>
                       <th>Sản phẩm</th>
+                      <th> ảnh </th>
                       <th>Số lương</th>
                       <th>hình thức giao hàng</th>
                       <th>Hình thức thanh toán</th>
-                      <th>Trạng thái</th>
+                     
                       <th>Thao tác</th>
                     </tr>
                   </thead>
@@ -181,10 +182,12 @@
                       <td>{{order.itemInCart.createDate}}</td>
                       <td>{{order.total}}</td>
                       <td>{{order.itemInCart.product.name}}</td>
+                      <td>
+                       <img width="50" height="50" src="{{order.itemInCart.product.image}}"/>
+                      </td>
                       <td>{{order.itemInCart.amount}}</td>
                       <td>{{order.shipment.type}}</td>
                       <td>{{order.payment.type}}</td>
-                      <td>{{order.statusstr}}</td>
                       <td><a href="/store/confirm/{{order.id}}"><button class="btn btn-primary">xác nhận</button></a></td>
                     </tr>
                     {% endfor %}
@@ -206,7 +209,7 @@
                 <h3 class="card-title">Sách</h3>
 
                 <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
+                  <div class="input-group input-group-sm" >
                  
                     <input type="text" name="book" class="form-control float-right" placeholder="Search">
 
@@ -220,12 +223,13 @@
                 </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 300px;">
+              <div class="card-body table-responsive p-0">
                 <table class="table table-head-fixed text-nowrap">
                   <thead>
                     <tr>
                      <th>Id</th>
                       <th>Sản phẩm</th>
+                      <th>ảnh</th>
                       <th>Gía nhập</th>
                       <th>Giá bán</th>
                       <th>Số lương</th>
@@ -240,6 +244,9 @@
                     <tr>
                       <td>#{{product.id}}</td>
                       <td>#{{product.name}}</td>
+                      <td>
+                       <img width="50" height="50" src="{{product.image}}"/>
+                      </td>
                       <td>{{product.importPrice}}</td>
                       <td>{{product.salePrice}}</td>
                       <td>{{product.amount}}</td>
@@ -286,7 +293,7 @@
                 <h3 class="card-title">Quần áo</h3>
 
                 <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
+                  <div class="input-group input-group-sm" >
                    
                     <input type="text" name="clo" class="form-control float-right" placeholder="Search">
 
@@ -300,12 +307,13 @@
                 </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 300px;">
+              <div class="card-body table-responsive p-0" >
                 <table class="table table-head-fixed text-nowrap">
                   <thead>
                     <tr>
                      <th>Id</th>
                       <th>Sản phẩm</th>
+                      <th>Ảnh</th>
                       <th>Gía nhập</th>
                       <th>Giá bán</th>
                       <th>Số lương</th>
@@ -320,6 +328,9 @@
                     <tr>
                       <td>#{{product.id}}</td>
                       <td>#{{product.name}}</td>
+                      <td>
+                       <img width="50" height="50" src="{{product.image}}"/>
+                      </td>
                       <td>{{product.importPrice}}</td>
                       <td>{{product.salePrice}}</td>
                       <td>{{product.amount}}</td>
@@ -364,7 +375,7 @@
                 <h3 class="card-title">Đồ điện tử</h3>
 
                 <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
+                  <div class="input-group input-group-sm">
                  
                     <input type="text" name="elec" class="form-control float-right" placeholder="Search">
 
@@ -384,6 +395,7 @@
                     <tr>
                      <th>Id</th>
                       <th>Sản phẩm</th>
+                      <th>ảnh</th>
                       <th>Gía nhập</th>
                       <th>Giá bán</th>
                       <th>Số lương</th>
@@ -398,6 +410,9 @@
                     <tr>
                       <td>#{{product.id}}</td>
                       <td>#{{product.name}}</td>
+                      <td>
+                       <img width="50" height="50" src="{{product.image}}"/>
+                      </td>
                       <td>{{product.importPrice}}</td>
                       <td>{{product.salePrice}}</td>
                       <td>{{product.amount}}</td>

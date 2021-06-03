@@ -42,7 +42,7 @@
                 </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 300px;">
+              <div class="card-body table-responsive p-0">
                 <table class="table table-head-fixed text-nowrap">
                   <thead>
                     <tr>
@@ -59,7 +59,9 @@
                       <td>#{{product.id}}</td>
                       <td>#{{product.name}}</td>
                       <td>{{product.saleOff}}</td>
-                      <td>{{product.image}}</td>
+                      <td>
+                      <img width="50" height="50" src="{{product.image}}"/>
+                      </td>
                       <td>
                           <li><a href="/busi/edit/{{product.id}}"><button class="btn btn-danger">Sửa</button></a></li>
                       </td
