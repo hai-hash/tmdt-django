@@ -27,6 +27,7 @@ def default(request):
 
 def index(request):
     list = Product.objects.all()
+    list.reverse()
     return render(request,"shop/index.html",{"list":list})
 
 
@@ -207,7 +208,7 @@ class Order(View):
                 list_order.append(order)
             except order.DoesNotExist:
                 pass
-
+        list_order.reverse()
 
         return render(request,"shop/history.html",{"list_order":list_order})
 
