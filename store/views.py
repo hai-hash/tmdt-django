@@ -1,4 +1,4 @@
-from shop.models import Author, Book, Brand, Category, Clothes, Electronic, ItemInCart, Material, Orders, Product, Supplier, Types
+from shop.models import *
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from shop.decorators import allowed_user
