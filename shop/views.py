@@ -189,7 +189,7 @@ class Register(View):
             cart.save()
             return redirect("/login")
 
-        return redirect("/")
+        return redirect("/register")
 
 
 class Order(View):
